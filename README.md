@@ -48,7 +48,7 @@ Brain EXE ($EXE) is a hash-based, post-quantum aware, fair-launch token with imm
 | Max Mint per Wallet | 500,000 $EXE (0.01 ETH) |
 | Transfer Burn Fee | 0.5% |
 | Fee Recipient | Burned (deflationary) |
-| Chain | Ethereum (Sepolia testnet) |
+| Chain | Ethereum |
 | Token Standard | ERC-20 + Ownable + Pausable + ReentrancyGuard |
 
 ---
@@ -143,7 +143,7 @@ cp .env.example .env
 | Max Supply | 1,000,000,000 EXE |
 | Mintable Supply | 650,000,000 EXE (65%) |
 | Decimals | 18 |
-| Chain | Ethereum (Sepolia testnet) |
+| Chain | Ethereum |
 | Rate | 0.001 ETH = 50,000 EXE |
 | Max / Wallet | 500,000 EXE |
 | Transfer Burn Fee | 0.5% |
@@ -192,7 +192,7 @@ The public mint is a bonded, first-come-first-served sale. Users send ETH to the
 
 | Property | Value |
 |----------|-------|
-| Network | Ethereum Sepolia (Testnet) |
+| Network | Ethereum |
 | Solidity Version | 0.8.28 |
 | EVM Target | Paris |
 | Optimizer | Enabled (200 runs) |
@@ -281,10 +281,10 @@ npx hardhat node
 npm run deploy:local
 ```
 
-### Sepolia Testnet
+### Mainnet
 
 ```bash
-npm run deploy:sepolia
+npm run deploy:mainnet
 ```
 
 ### Mainnet
