@@ -8,7 +8,11 @@
     "deploy:local": "hardhat run scripts/deploy.js --network hardhat",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
     "deploy:mainnet": "hardhat run scripts/deploy.js --network mainnet",
-    "verify": "hardhat verify"
+    "verify": "hardhat verify",
+    "audit:slither": "python -m slither . --json slither-report.json --checklist > slither-report.txt 2>&1 || type slither-report.txt",
+    "audit:echidna:exe": "echidna echidna/EchidnaBrainEXE.sol --contract EchidnaBrainEXE --config echidna/config.yaml --solc-args \"--base-path . --include-path node_modules\"",
+    "audit:echidna:account": "echidna echidna/EchidnaBrainAccount.sol --contract EchidnaBrainAccount --config echidna/config.yaml --solc-args \"--base-path . --include-path node_modules\"",
+    "audit:echidna:gate": "echidna echidna/EchidnaMintGate.sol --contract EchidnaMintGate --config echidna/config.yaml --solc-args \"--base-path . --include-path node_modules\""
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
