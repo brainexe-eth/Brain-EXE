@@ -1,0 +1,22 @@
+# Echidna configuration for Brain EXE audit
+campaignTimeout: 300
+# testMode: assertion  # use 'property' mode by default (echidna_* invariants)
+testMode: property
+# testLimit: 50000
+seqLen: 100
+shrinkLimit: 1000
+# Corpus directory
+corpusDir: echidna-corpus
+# Coverage report
+coverage: true
+# Multiple workers
+workers: 4
+# Contract deployment balance
+deployerBalance: 100000000000000000000  # 100 ETH
+# Sender addresses
+sender: ["0x10000", "0x20000", "0x30000"]
+# Balance for each sender
+balanceAddr: 100000000000000000000
+balanceContract: 100000000000000000000
+# Filter functions (optional)
+# filterFunctions: ["transfer"]

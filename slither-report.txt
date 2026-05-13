@@ -1,0 +1,507 @@
+'npx hardhat clean' running (wd: C:\Users\Derry\Desktop\Brain EXE)
+'npx hardhat clean --global' running (wd: C:\Users\Derry\Desktop\Brain EXE)
+Problem executing hardhat: [33m[1mWARNING:[22m[39m You are currently using Node.js v25.2.1, which is not supported by Hardhat. This can lead to unexpected behavior. See https://v2.hardhat.org/nodejs-versions
+
+'npx hardhat compile --force' running (wd: C:\Users\Derry\Desktop\Brain EXE)
+
+Detector: events-maths
+BrainEXE.setMaxMintPerWallet(uint256) (contracts/BrainEXE.sol#144-146) should emit an event for: 
+	- maxMintPerWallet = _max (contracts/BrainEXE.sol#145) 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-events-arithmetic
+
+Detector: missing-zero-check
+BrainAccount.execute(address,uint256,bytes).to (contracts/BrainAccount.sol#44) lacks a zero-check on :
+		- (success,result) = to.call{value: value}(data) (contracts/BrainAccount.sol#45)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+Detector: calls-loop
+BrainAccount.executeBatch(address[],uint256[],bytes[]) (contracts/BrainAccount.sol#60-75) has external calls inside a loop: (success,result) = to[i].call{value: value[i]}(data[i]) (contracts/BrainAccount.sol#67)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+
+Detector: reentrancy-events
+Reentrancy in BrainAccount.execute(address,uint256,bytes) (contracts/BrainAccount.sol#44-52):
+	External calls:
+	- (success,result) = to.call{value: value}(data) (contracts/BrainAccount.sol#45)
+	Event emitted after the call(s):
+	- Executed(to,value,data) (contracts/BrainAccount.sol#51)
+Reentrancy in BrainAccount.executeBatch(address[],uint256[],bytes[]) (contracts/BrainAccount.sol#60-75):
+	External calls:
+	- (success,result) = to[i].call{value: value[i]}(data[i]) (contracts/BrainAccount.sol#67)
+	Event emitted after the call(s):
+	- Executed(to[i],value[i],data[i]) (contracts/BrainAccount.sol#73)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-4
+
+Detector: timestamp
+BrainAccount.confirmOwnershipChange() (contracts/BrainAccount.sol#123-130) uses timestamp for comparisons
+	Dangerous comparisons:
+	- require(bool,string)(block.timestamp >= ownershipChangeTime,BrainAccount: delay not passed) (contracts/BrainAccount.sol#125)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+
+Detector: assembly
+StorageSlot.getAddressSlot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#66-70) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#67-69)
+StorageSlot.getBooleanSlot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#75-79) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#76-78)
+StorageSlot.getBytes32Slot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#84-88) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#85-87)
+StorageSlot.getUint256Slot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#93-97) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#94-96)
+StorageSlot.getInt256Slot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#102-106) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#103-105)
+StorageSlot.getStringSlot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#111-115) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#112-114)
+StorageSlot.getStringSlot(string) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#120-124) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#121-123)
+StorageSlot.getBytesSlot(bytes32) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#129-133) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#130-132)
+StorageSlot.getBytesSlot(bytes) (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#138-142) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#139-141)
+Hashes.efficientKeccak256(bytes32,bytes32) (node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#24-30) uses assembly
+	- INLINE ASM (node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#25-29)
+BrainAccount.execute(address,uint256,bytes) (contracts/BrainAccount.sol#44-52) uses assembly
+	- INLINE ASM (contracts/BrainAccount.sol#47-49)
+BrainAccount.executeBatch(address[],uint256[],bytes[]) (contracts/BrainAccount.sol#60-75) uses assembly
+	- INLINE ASM (contracts/BrainAccount.sol#69-71)
+BrainAccount._verifySignature(bytes32,bytes) (contracts/BrainAccount.sol#90-106) uses assembly
+	- INLINE ASM (contracts/BrainAccount.sol#95-99)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage
+
+Detector: pragma
+5 different versions of Solidity are used:
+	- Version constraint ^0.8.20 is used by:
+		-^0.8.20 (node_modules/@openzeppelin/contracts/access/Ownable.sol#4)
+		-^0.8.20 (node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol#4)
+		-^0.8.20 (node_modules/@openzeppelin/contracts/utils/Context.sol#4)
+		-^0.8.20 (node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol#4)
+		-^0.8.20 (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#5)
+		-^0.8.20 (node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#4)
+		-^0.8.20 (node_modules/@openzeppelin/contracts/utils/cryptography/MerkleProof.sol#5)
+		-^0.8.20 (contracts/IMintGate.sol#2)
+	- Version constraint >=0.8.4 is used by:
+		->=0.8.4 (node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol#4)
+	- Version constraint >=0.4.16 is used by:
+		->=0.4.16 (node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol#4)
+	- Version constraint >=0.6.2 is used by:
+		->=0.6.2 (node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol#4)
+	- Version constraint 0.8.28 is used by:
+		-0.8.28 (contracts/BrainAccount.sol#2)
+		-0.8.28 (contracts/BrainEXE.sol#2)
+		-0.8.28 (contracts/MintGate.sol#2)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+
+Detector: solc-version
+Version constraint ^0.8.20 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess.
+It is used by:
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/access/Ownable.sol#4)
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol#4)
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/utils/Context.sol#4)
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol#4)
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#5)
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#4)
+	- ^0.8.20 (node_modules/@openzeppelin/contracts/utils/cryptography/MerkleProof.sol#5)
+	- ^0.8.20 (contracts/IMintGate.sol#2)
+Version constraint >=0.8.4 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- DataLocationChangeInInternalOverride
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- SignedImmutables.
+It is used by:
+	- >=0.8.4 (node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol#4)
+Version constraint >=0.4.16 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- DirtyBytesArrayToStorage
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow
+	- privateCanBeOverridden
+	- SignedArrayStorageCopy
+	- ABIEncoderV2StorageArrayWithMultiSlotElement
+	- DynamicConstructorArgumentsClippedABIV2
+	- UninitializedFunctionPointerInConstructor_0.4.x
+	- IncorrectEventSignatureInLibraries_0.4.x
+	- ExpExponentCleanup
+	- NestedArrayFunctionCallDecoder
+	- ZeroFunctionSelector.
+It is used by:
+	- >=0.4.16 (node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol#4)
+Version constraint >=0.6.2 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- MissingEscapingInFormatting
+	- ArraySliceDynamicallyEncodedBaseType
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow.
+It is used by:
+	- >=0.6.2 (node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol#4)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Detector: low-level-calls
+Low level call in BrainAccount.execute(address,uint256,bytes) (contracts/BrainAccount.sol#44-52):
+	- (success,result) = to.call{value: value}(data) (contracts/BrainAccount.sol#45)
+Low level call in BrainAccount.executeBatch(address[],uint256[],bytes[]) (contracts/BrainAccount.sol#60-75):
+	- (success,result) = to[i].call{value: value[i]}(data[i]) (contracts/BrainAccount.sol#67)
+Low level call in BrainEXE.withdraw() (contracts/BrainEXE.sol#151-156):
+	- (success,None) = address(owner()).call{value: balance}() (contracts/BrainEXE.sol#154)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+
+Detector: naming-convention
+Parameter BrainEXE.setBurnFee(uint256)._fee (contracts/BrainEXE.sol#134) is not in mixedCase
+Parameter BrainEXE.toggleMint(bool)._enabled (contracts/BrainEXE.sol#140) is not in mixedCase
+Parameter BrainEXE.setMaxMintPerWallet(uint256)._max (contracts/BrainEXE.sol#144) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+Detector: constable-states
+BrainAccount.nonce (contracts/BrainAccount.sol#21) should be constant 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-constant
+. analyzed (16 contracts with 101 detectors), 31 result(s) found
+INFO:Slither:slither-report.json exists already, the overwrite is prevented
+**THIS CHECKLIST IS NOT COMPLETE**. Use `--show-ignored-findings` to show all the results.
+Summary
+ - [events-maths](#events-maths) (1 results) (Low)
+ - [missing-zero-check](#missing-zero-check) (1 results) (Low)
+ - [calls-loop](#calls-loop) (1 results) (Low)
+ - [reentrancy-events](#reentrancy-events) (2 results) (Low)
+ - [timestamp](#timestamp) (1 results) (Low)
+ - [assembly](#assembly) (13 results) (Informational)
+ - [pragma](#pragma) (1 results) (Informational)
+ - [solc-version](#solc-version) (4 results) (Informational)
+ - [low-level-calls](#low-level-calls) (3 results) (Informational)
+ - [naming-convention](#naming-convention) (3 results) (Informational)
+ - [constable-states](#constable-states) (1 results) (Optimization)
+## events-maths
+Impact: Low
+Confidence: Medium
+ - [ ] ID-0
+[BrainEXE.setMaxMintPerWallet(uint256)](contracts/BrainEXE.sol#L144-L146) should emit an event for: 
+	- [maxMintPerWallet = _max](contracts/BrainEXE.sol#L145) 
+
+contracts/BrainEXE.sol#L144-L146
+
+
+## missing-zero-check
+Impact: Low
+Confidence: Medium
+ - [ ] ID-1
+[BrainAccount.execute(address,uint256,bytes).to](contracts/BrainAccount.sol#L44) lacks a zero-check on :
+		- [(success,result) = to.call{value: value}(data)](contracts/BrainAccount.sol#L45)
+
+contracts/BrainAccount.sol#L44
+
+
+## calls-loop
+Impact: Low
+Confidence: Medium
+ - [ ] ID-2
+[BrainAccount.executeBatch(address[],uint256[],bytes[])](contracts/BrainAccount.sol#L60-L75) has external calls inside a loop: [(success,result) = to[i].call{value: value[i]}(data[i])](contracts/BrainAccount.sol#L67)
+
+contracts/BrainAccount.sol#L60-L75
+
+
+## reentrancy-events
+Impact: Low
+Confidence: Medium
+ - [ ] ID-3
+Reentrancy in [BrainAccount.executeBatch(address[],uint256[],bytes[])](contracts/BrainAccount.sol#L60-L75):
+	External calls:
+	- [(success,result) = to[i].call{value: value[i]}(data[i])](contracts/BrainAccount.sol#L67)
+	Event emitted after the call(s):
+	- [Executed(to[i],value[i],data[i])](contracts/BrainAccount.sol#L73)
+
+contracts/BrainAccount.sol#L60-L75
+
+
+ - [ ] ID-4
+Reentrancy in [BrainAccount.execute(address,uint256,bytes)](contracts/BrainAccount.sol#L44-L52):
+	External calls:
+	- [(success,result) = to.call{value: value}(data)](contracts/BrainAccount.sol#L45)
+	Event emitted after the call(s):
+	- [Executed(to,value,data)](contracts/BrainAccount.sol#L51)
+
+contracts/BrainAccount.sol#L44-L52
+
+
+## timestamp
+Impact: Low
+Confidence: Medium
+ - [ ] ID-5
+[BrainAccount.confirmOwnershipChange()](contracts/BrainAccount.sol#L123-L130) uses timestamp for comparisons
+	Dangerous comparisons:
+	- [require(bool,string)(block.timestamp >= ownershipChangeTime,BrainAccount: delay not passed)](contracts/BrainAccount.sol#L125)
+
+contracts/BrainAccount.sol#L123-L130
+
+
+## assembly
+Impact: Informational
+Confidence: High
+ - [ ] ID-6
+[StorageSlot.getAddressSlot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L66-L70) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L67-L69)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L66-L70
+
+
+ - [ ] ID-7
+[StorageSlot.getUint256Slot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L93-L97) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L94-L96)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L93-L97
+
+
+ - [ ] ID-8
+[StorageSlot.getBooleanSlot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L75-L79) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L76-L78)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L75-L79
+
+
+ - [ ] ID-9
+[StorageSlot.getBytes32Slot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L84-L88) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L85-L87)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L84-L88
+
+
+ - [ ] ID-10
+[StorageSlot.getInt256Slot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L102-L106) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L103-L105)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L102-L106
+
+
+ - [ ] ID-11
+[BrainAccount.executeBatch(address[],uint256[],bytes[])](contracts/BrainAccount.sol#L60-L75) uses assembly
+	- [INLINE ASM](contracts/BrainAccount.sol#L69-L71)
+
+contracts/BrainAccount.sol#L60-L75
+
+
+ - [ ] ID-12
+[StorageSlot.getBytesSlot(bytes)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L138-L142) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L139-L141)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L138-L142
+
+
+ - [ ] ID-13
+[StorageSlot.getStringSlot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L111-L115) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L112-L114)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L111-L115
+
+
+ - [ ] ID-14
+[BrainAccount.execute(address,uint256,bytes)](contracts/BrainAccount.sol#L44-L52) uses assembly
+	- [INLINE ASM](contracts/BrainAccount.sol#L47-L49)
+
+contracts/BrainAccount.sol#L44-L52
+
+
+ - [ ] ID-15
+[StorageSlot.getStringSlot(string)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L120-L124) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L121-L123)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L120-L124
+
+
+ - [ ] ID-16
+[StorageSlot.getBytesSlot(bytes32)](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L129-L133) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L130-L132)
+
+node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L129-L133
+
+
+ - [ ] ID-17
+[BrainAccount._verifySignature(bytes32,bytes)](contracts/BrainAccount.sol#L90-L106) uses assembly
+	- [INLINE ASM](contracts/BrainAccount.sol#L95-L99)
+
+contracts/BrainAccount.sol#L90-L106
+
+
+ - [ ] ID-18
+[Hashes.efficientKeccak256(bytes32,bytes32)](node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#L24-L30) uses assembly
+	- [INLINE ASM](node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#L25-L29)
+
+node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#L24-L30
+
+
+## pragma
+Impact: Informational
+Confidence: High
+ - [ ] ID-19
+5 different versions of Solidity are used:
+	- Version constraint ^0.8.20 is used by:
+		-[^0.8.20](node_modules/@openzeppelin/contracts/access/Ownable.sol#L4)
+		-[^0.8.20](node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol#L4)
+		-[^0.8.20](node_modules/@openzeppelin/contracts/utils/Context.sol#L4)
+		-[^0.8.20](node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol#L4)
+		-[^0.8.20](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L5)
+		-[^0.8.20](node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#L4)
+		-[^0.8.20](node_modules/@openzeppelin/contracts/utils/cryptography/MerkleProof.sol#L5)
+		-[^0.8.20](contracts/IMintGate.sol#L2)
+	- Version constraint >=0.8.4 is used by:
+		-[>=0.8.4](node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol#L4)
+	- Version constraint >=0.4.16 is used by:
+		-[>=0.4.16](node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol#L4)
+	- Version constraint >=0.6.2 is used by:
+		-[>=0.6.2](node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol#L4)
+	- Version constraint 0.8.28 is used by:
+		-[0.8.28](contracts/BrainAccount.sol#L2)
+		-[0.8.28](contracts/BrainEXE.sol#L2)
+		-[0.8.28](contracts/MintGate.sol#L2)
+
+node_modules/@openzeppelin/contracts/access/Ownable.sol#L4
+
+
+## solc-version
+Impact: Informational
+Confidence: High
+ - [ ] ID-20
+Version constraint >=0.4.16 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- DirtyBytesArrayToStorage
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow
+	- privateCanBeOverridden
+	- SignedArrayStorageCopy
+	- ABIEncoderV2StorageArrayWithMultiSlotElement
+	- DynamicConstructorArgumentsClippedABIV2
+	- UninitializedFunctionPointerInConstructor_0.4.x
+	- IncorrectEventSignatureInLibraries_0.4.x
+	- ExpExponentCleanup
+	- NestedArrayFunctionCallDecoder
+	- ZeroFunctionSelector.
+It is used by:
+	- [>=0.4.16](node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol#L4)
+
+node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol#L4
+
+
+ - [ ] ID-21
+Version constraint ^0.8.20 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- VerbatimInvalidDeduplication
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess.
+It is used by:
+	- [^0.8.20](node_modules/@openzeppelin/contracts/access/Ownable.sol#L4)
+	- [^0.8.20](node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol#L4)
+	- [^0.8.20](node_modules/@openzeppelin/contracts/utils/Context.sol#L4)
+	- [^0.8.20](node_modules/@openzeppelin/contracts/utils/ReentrancyGuard.sol#L4)
+	- [^0.8.20](node_modules/@openzeppelin/contracts/utils/StorageSlot.sol#L5)
+	- [^0.8.20](node_modules/@openzeppelin/contracts/utils/cryptography/Hashes.sol#L4)
+	- [^0.8.20](node_modules/@openzeppelin/contracts/utils/cryptography/MerkleProof.sol#L5)
+	- [^0.8.20](contracts/IMintGate.sol#L2)
+
+node_modules/@openzeppelin/contracts/access/Ownable.sol#L4
+
+
+ - [ ] ID-22
+Version constraint >=0.6.2 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- ABIDecodeTwoDimensionalArrayMemory
+	- KeccakCaching
+	- EmptyByteArrayCopy
+	- DynamicArrayCleanup
+	- MissingEscapingInFormatting
+	- ArraySliceDynamicallyEncodedBaseType
+	- ImplicitConstructorCallvalueCheck
+	- TupleAssignmentMultiStackSlotComponents
+	- MemoryArrayCreationOverflow.
+It is used by:
+	- [>=0.6.2](node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol#L4)
+
+node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol#L4
+
+
+ - [ ] ID-23
+Version constraint >=0.8.4 contains known severe issues (https://solidity.readthedocs.io/en/latest/bugs.html)
+	- FullInlinerNonExpressionSplitArgumentEvaluationOrder
+	- MissingSideEffectsOnSelectorAccess
+	- AbiReencodingHeadOverflowWithStaticArrayCleanup
+	- DirtyBytesArrayToStorage
+	- DataLocationChangeInInternalOverride
+	- NestedCalldataArrayAbiReencodingSizeValidation
+	- SignedImmutables.
+It is used by:
+	- [>=0.8.4](node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol#L4)
+
+node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol#L4
+
+
+## low-level-calls
+Impact: Informational
+Confidence: High
+ - [ ] ID-24
+Low level call in [BrainAccount.executeBatch(address[],uint256[],bytes[])](contracts/BrainAccount.sol#L60-L75):
+	- [(success,result) = to[i].call{value: value[i]}(data[i])](contracts/BrainAccount.sol#L67)
+
+contracts/BrainAccount.sol#L60-L75
+
+
+ - [ ] ID-25
+Low level call in [BrainAccount.execute(address,uint256,bytes)](contracts/BrainAccount.sol#L44-L52):
+	- [(success,result) = to.call{value: value}(data)](contracts/BrainAccount.sol#L45)
+
+contracts/BrainAccount.sol#L44-L52
+
+
+ - [ ] ID-26
+Low level call in [BrainEXE.withdraw()](contracts/BrainEXE.sol#L151-L156):
+	- [(success,None) = address(owner()).call{value: balance}()](contracts/BrainEXE.sol#L154)
+
+contracts/BrainEXE.sol#L151-L156
+
+
+## naming-convention
+Impact: Informational
+Confidence: High
+ - [ ] ID-27
+Parameter [BrainEXE.toggleMint(bool)._enabled](contracts/BrainEXE.sol#L140) is not in mixedCase
+
+contracts/BrainEXE.sol#L140
+
+
+ - [ ] ID-28
+Parameter [BrainEXE.setMaxMintPerWallet(uint256)._max](contracts/BrainEXE.sol#L144) is not in mixedCase
+
+contracts/BrainEXE.sol#L144
+
+
+ - [ ] ID-29
+Parameter [BrainEXE.setBurnFee(uint256)._fee](contracts/BrainEXE.sol#L134) is not in mixedCase
+
+contracts/BrainEXE.sol#L134
+
+
+## constable-states
+Impact: Optimization
+Confidence: High
+ - [ ] ID-30
+[BrainAccount.nonce](contracts/BrainAccount.sol#L21) should be constant 
+
+contracts/BrainAccount.sol#L21
+
+
